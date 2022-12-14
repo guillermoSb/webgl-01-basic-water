@@ -122,6 +122,7 @@ const plane = new THREE.PlaneGeometry(10, 10, 256, 256);
 const material = new THREE.ShaderMaterial({
 	vertexShader: vertexShader,
 	fragmentShader: fragmentShader,
+	transparent:true,
 	uniforms: {
 		uNormalTexture: {
 			value: normalTexture
@@ -164,10 +165,26 @@ const clock = new THREE.Clock()
 camera.lookAt(mesh.position);
 renderer.setClearColor(new THREE.Color(0x8ec9e6));
 
+/**
+ * Test object
+ */
+const sphere = new THREE.Mesh(
+	new THREE.SphereGeometry(0.5, 32,32),
+	new THREE.MeshLambertMaterial({
+		color: 0xffff00,
+		emissive: 0x1cb034,
+		reflectivity: 1,
+		refractionRatio: 0.98
+	})
+)
+scene.add(sphere);
 
 const tick = () =>
 {
 	const elapsedTime = clock.getElapsedTime()
+	sphere.position.y = Math.sin(elapsedTime) * 0.3;
+	sphere.position.x = Math.sin(elapsedTime * 0.1);
+	sphere.position.z = Math.cos(elapsedTime * 0.1);
 
 	// Update the mesh uniforms
 	mesh.material.uniforms.uTime.value = elapsedTime;

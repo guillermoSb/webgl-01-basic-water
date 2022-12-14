@@ -81,10 +81,10 @@ void main() {
 	vec3 viewDir = normalize(uViewPos - vFragPosition);
 	vec3 reflectDir = reflect(-lightDir, norm);
 	float spec = pow(max(dot(viewDir, reflectDir), 0.0), 20.0);
-	float specNoise = max(cnoise(vFragPosition.xy * 50.0), 0.5);
+	float specNoise = max(cnoise(vFragPosition.xz * 20.0), 0.5);
 	vec3 specular = (specNoise * spec) * specularStrength * uLightColor;
 
 	vec3 result = (ambient + diffuse+ specular) * waterColor;
-	gl_FragColor = vec4(result, 1.0);
+	gl_FragColor = vec4(result, 0.5);
 	// Assign the fragment color
 }
