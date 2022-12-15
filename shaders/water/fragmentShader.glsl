@@ -57,9 +57,9 @@ void main() {
 	vec2 newUv0 = vUv * 4.0;
 	vec2 newUv1 = vUv * 4.0;
 	newUv0.x += uTime * 0.07;
-	newUv0.y += uTime * 0.005;
-	newUv1.x -= uTime * 0.005;
-	newUv1.y -= uTime * 0.005;
+	newUv0.y += uTime * 0.07;
+	newUv1.x -= uTime * 0.04;
+	newUv1.y += uTime * 0.04;
 	
 	// Get the normal vector for the pixel
 	vec3 n0 = texture2D(uNormalTexture, newUv0).rgb * 2.0 - 1.0;

@@ -122,7 +122,8 @@ const plane = new THREE.PlaneGeometry(10, 10, 256, 256);
 const material = new THREE.ShaderMaterial({
 	vertexShader: vertexShader,
 	fragmentShader: fragmentShader,
-	transparent:true,
+	transparent: true,
+	side: THREE.DoubleSide,
 	uniforms: {
 		uNormalTexture: {
 			value: normalTexture
